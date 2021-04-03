@@ -6,8 +6,7 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// Require path to make relative paths cleaner to write
-const path = require("path");
+const Employee = require("./lib/Employee");
 // Require generateTeam function from page-template.js in order to call it here
 const generateTeam = require("./src/page-template");
 // Empty list to push team members to - this will be passed into generateTeam
@@ -152,10 +151,12 @@ function addMore() {
                 case "Intern":
                     intern();
                     break;
-                // if done, write to file with info provided
                 default:
                     console.log("okay no more");
-                    //fs.
+                    // if done, write to file with info provided
+                    // call the generateTeam function to create the HTML
+                    // https://stackoverflow.com/questions/2496710/writing-files-in-node-js
+                    fs.writeFileSync("./output/index.html", generateTeam(team));
             }
         });
 }
