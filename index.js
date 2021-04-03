@@ -1,6 +1,15 @@
-// Include packages needed for this application
+// Inquirer package for terminal questions
 const inquirer = require("inquirer");
+// fs package for writing file
 const fs = require("fs");
+// Include the classes
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+// Require path to make relative paths cleaner to write
+const path = require("path");
+// Require generateTeam function from page-template.js in order to call it here
+const generateTeam = require("./src/page-template");
 
 // Manager questions
 const managerQs = [
@@ -74,6 +83,7 @@ const internQs = [
     }
 ];
 
+// Questions for adding more members or ending 
 const moreQs = [
     {
         type: "list",
@@ -87,8 +97,68 @@ const moreQs = [
     }
 ];
 
-inquirer
-    .prompt(managerQs)
-    .then( (response) => {
-        console.log(response.name);
-    });
+function manager() {
+    inquirer
+        // ask manager questions
+        .prompt(managerQs)
+        // take the response and create a new manager
+        .then( (response) => {
+            console.log(response.name);
+            const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
+            // Run moreQs function to ask if more members should be added
+            addMore();
+        });
+}
+
+function engineer() {
+    inquirer
+        .prompt(engineerQs)
+        .then( (response) => {
+            console.log(response.name);
+            const engineer = new Engineer(response.name, response.id, response.email, response.officeNumber);
+            // Run moreQs function to ask if more members should be added
+            addMore();
+        });
+}
+
+function intern() {
+    inquirer
+        .prompt(internQs)
+        .then( (response) => {
+            console.log(response.name);
+            const intern = new Intern(response.name, response.id, response.email, response.officeNumber);
+
+            // Run moreQs function to ask if more members should be added
+            addMore();
+        });
+}
+
+function addMore() {
+    inquirer
+        .prompt(moreQs)
+        .then( (response) => {
+            console.log(response);
+            switch (response.add) {
+                case "Engineer":
+                    engineer();
+                    break;
+                case "Intern":
+                    intern();
+                    break;
+                // if done, write to file with info provided
+                default:
+                    console.log("okay no more");
+                    fs.
+            }
+        });
+}
+
+function init() {
+    // Welcome message
+    console.log("Please add your team members:");
+    // Start with manager function
+    manager();
+}
+
+// This function start the file
+init(); 
