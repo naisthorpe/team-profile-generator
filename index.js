@@ -10,6 +10,8 @@ const Intern = require("./lib/Intern");
 const path = require("path");
 // Require generateTeam function from page-template.js in order to call it here
 const generateTeam = require("./src/page-template");
+// Empty list to push team members to - this will be passed into generateTeam
+const team = [];
 
 // Manager questions
 const managerQs = [
@@ -105,6 +107,8 @@ function manager() {
         .then( (response) => {
             console.log(response.name);
             const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
+            // Add manager object to team list
+            team.push(manager);
             // Run moreQs function to ask if more members should be added
             addMore();
         });
@@ -116,6 +120,8 @@ function engineer() {
         .then( (response) => {
             console.log(response.name);
             const engineer = new Engineer(response.name, response.id, response.email, response.officeNumber);
+            // Add engineer object to team list
+            team.push(engineer);
             // Run moreQs function to ask if more members should be added
             addMore();
         });
@@ -127,7 +133,8 @@ function intern() {
         .then( (response) => {
             console.log(response.name);
             const intern = new Intern(response.name, response.id, response.email, response.officeNumber);
-
+            // Add intern object to team list
+            team.push(intern);
             // Run moreQs function to ask if more members should be added
             addMore();
         });
