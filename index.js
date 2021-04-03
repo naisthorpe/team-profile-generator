@@ -103,7 +103,6 @@ function manager() {
         .prompt(managerQs)
         // take the response and create a new manager
         .then( (response) => {
-            console.log(response.name);
             const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
             // Add manager object to team list
             team.push(manager);
@@ -116,7 +115,6 @@ function engineer() {
     inquirer
         .prompt(engineerQs)
         .then( (response) => {
-            console.log(response.name);
             const engineer = new Engineer(response.name, response.id, response.email, response.github);
             // Add engineer object to team list
             team.push(engineer);
@@ -129,7 +127,6 @@ function intern() {
     inquirer
         .prompt(internQs)
         .then( (response) => {
-            console.log(response.name);
             const intern = new Intern(response.name, response.id, response.email, response.school);
             // Add intern object to team list
             team.push(intern);
@@ -151,7 +148,7 @@ function addMore() {
                     intern();
                     break;
                 default:
-                    console.log("okay no more");
+                    console.log("Thank you, your team HTML file has been generated.");
                     // if done, write to file with info provided
                     // call the generateTeam function to create the HTML
                     // https://stackoverflow.com/questions/2496710/writing-files-in-node-js
