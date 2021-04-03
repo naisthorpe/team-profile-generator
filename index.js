@@ -148,7 +148,7 @@ function addMore() {
                 // if done, write to file with info provided
                 default:
                     console.log("okay no more");
-                    fs.
+                    //fs.
             }
         });
 }
