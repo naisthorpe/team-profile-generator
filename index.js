@@ -23,18 +23,7 @@ const managerQs = [
         type: "input",
         message: "What is the team manager's office number?",
         name: "officeNumber",
-    },
-    {
-        type: "list",
-        message: "Which type of team member would you like to add? (Use arrow keys)",
-        name: "add",
-        choices: [
-            "Engineer",
-            "Intern",
-            "I don't want to add anymore team members"
-        ],
-    },
-    
+    }  
 ];
 
 // Engineer questions
@@ -58,18 +47,7 @@ const engineerQs = [
         type: "input",
         message: "What is the engineer's GitHub username?",
         name: "github",
-    },
-    {
-        type: "list",
-        message: "Which type of team member would you like to add? (Use arrow keys)",
-        name: "add",
-        choices: [
-            "Engineer",
-            "Intern",
-            "I don't want to add anymore team members"
-        ],
-    },
-    
+    }
 ];
 
 // Intern questions
@@ -93,7 +71,10 @@ const internQs = [
         type: "input",
         message: "What is the intern's school?",
         name: "school",
-    },
+    }
+];
+
+const moreQs = [
     {
         type: "list",
         message: "Which type of team member would you like to add? (Use arrow keys)",
@@ -102,7 +83,12 @@ const internQs = [
             "Engineer",
             "Intern",
             "I don't want to add anymore team members"
-        ],
-    },
-    
+        ]
+    }
 ];
+
+inquirer
+    .prompt(managerQs)
+    .then( (response) => {
+        console.log(response.name);
+    });
