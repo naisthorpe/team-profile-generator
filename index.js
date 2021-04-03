@@ -6,10 +6,9 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const Employee = require("./lib/Employee");
 // Require generateTeam function from page-template.js in order to call it here
 const generateTeam = require("./src/page-template");
-// Empty list to push team members to - this will be passed into generateTeam
+// Empty list to push team members to - this will be passed into generateTeam when writing the file
 const team = [];
 
 // Manager questions
@@ -118,7 +117,7 @@ function engineer() {
         .prompt(engineerQs)
         .then( (response) => {
             console.log(response.name);
-            const engineer = new Engineer(response.name, response.id, response.email, response.officeNumber);
+            const engineer = new Engineer(response.name, response.id, response.email, response.github);
             // Add engineer object to team list
             team.push(engineer);
             // Run moreQs function to ask if more members should be added
@@ -131,7 +130,7 @@ function intern() {
         .prompt(internQs)
         .then( (response) => {
             console.log(response.name);
-            const intern = new Intern(response.name, response.id, response.email, response.officeNumber);
+            const intern = new Intern(response.name, response.id, response.email, response.school);
             // Add intern object to team list
             team.push(intern);
             // Run moreQs function to ask if more members should be added
