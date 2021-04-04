@@ -139,7 +139,6 @@ function addMore() {
     inquirer
         .prompt(moreQs)
         .then( (response) => {
-            console.log(response);
             switch (response.add) {
                 case "Engineer":
                     engineer();
